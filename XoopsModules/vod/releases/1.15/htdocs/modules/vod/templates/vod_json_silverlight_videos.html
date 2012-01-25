@@ -1,0 +1,6 @@
+<{if $xoConfig.iframe && $iframe==true}>
+<iframe src="<{$xoops_url}>/modules/vod/?vid=<{$videos.vid}>&iframe=1&width=<{$videos.width}>&height=<{$videos.height}>&_returned=<{php}> echo seralize($GLOBALS['_returned']); <{/php}>" width="<{$videos.width}>" height="<{$videos.height}>"/></iframe>
+<{else}>
+<silverlight width="<{$videos.width}>" height="<{$videos.height}>" src="<{$videos.source}>" />
+<{/if}> 
+

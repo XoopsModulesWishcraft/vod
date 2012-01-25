@@ -1,0 +1,17 @@
+<{if $xoConfig.iframe && $iframe==true}>
+<iframe src="<{$xoops_url}>/modules/vod/?vid=<{$videos.vid}>&iframe=1&width=<{$videos.width}>&height=<{$videos.height}>&_returned=<{php}> echo seralize($GLOBALS['_returned']); <{/php}>" width="<{$videos.width}>" height="<{$videos.height}>"/></iframe>
+<{else}>
+  <div class="<{$videos.id}>-box">
+    <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
+    <video id="<{$videos.id}>" class="video-js" width="<{$videos.width}>" height="<{$videos.height}>" <{if $videos.controls}>controls="controls"<{/if}> preload="auto" <{if $videos.poster}>poster="<{$xoops_url}><{$videos.path}>/<{$videos.poster}>"<{/if}>>
+      <source src="<{$videos.source}>" <{if $mimetype}>type='<{$mimetype.mimetype}>' codecs="<{$mimetype.codecs}>"<{/if}> />
+      <!-- Flash Fallback. Use any flash video videos here. Make sure to keep the vjs-flash-fallback class. -->
+      <{if $videos.poster}>
+        <img src="<{$xoops_url}><{$videos.path}>/<{$videos.poster}>" width="<{$videos.width}>" height="<{$videos.height}>" alt="Poster Image"
+          title="No video playback capabilities." />
+      <{/if}>
+    </video>
+  </div>
+  <!-- End VideoJS -->
+ 
+<{/if}>

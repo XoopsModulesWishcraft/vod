@@ -1,0 +1,52 @@
+<h1><{$smarty.const._AM_VOD_LOG_H1}></h1>
+<p><{$smarty.const._AM_VOD_LOG_P}></p>
+<div style="clear:both; height:45px;">
+	<div style="float:right; height:45px;"><{$pagenav}></div>
+</div>
+
+<form action="<{$php_self}>" method='post'>
+<table>
+	<tr class="head">
+		<th><{$log_id_th}></th>
+		<th><{$class_th}></th>
+		<th><{$id_th}></th>
+		<th><{$uid_th}></th>
+		<th><{$status_th}></th>
+		<th><{$name_th}></th>
+		<th><{$comment_th}></th>
+		<th><{$created_th}></th>
+	</tr>
+	<tr class="filter">
+		<th>&nbsp;</th>
+		<th><{$filter_class_th}></th>
+		<th><{$filter_id_th}></th>
+		<th><{$filter_uid_th}></th>
+		<th><{$filter_status_th}></th>
+		<th><{$filter_name_th}></th>
+		<th><{$filter_comment_th}></th>
+		<th>&nbsp;</th>
+	</tr>
+	<{foreach item=item from=$log}>
+	<tr class="<{cycle values="even,odd"}>">
+		<td align='center'><{$item.log_id}></td>
+		<td align='center'><{$item.class}></td>
+		<td align='center'><{$item.id}></td>
+		<td align='center'><{$item.uid}></td>
+		<td align='center'><{$item.status}></td>
+		<td align='center'><{$item.name}></td>
+		<td align='left'><{$item.comment}></td>
+		<td align='center'><{$item.created}></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td colspan="10">&nbsp;</td>
+	</tr>
+</table>
+<input type='hidden' name='op' value='log'/>
+<input type='hidden' name='fct' value='savelist'/>
+<input type='hidden' name='start' value='<{$start}>'/>
+<input type='hidden' name='limit' value='<{$limit}>'/>
+<input type='hidden' name='order' value='<{$order}>'/>
+<input type='hidden' name='sort' value='<{$sort}>'/>
+<input type='hidden' name='filter' value='<{$filter}>'/>
+</form>
