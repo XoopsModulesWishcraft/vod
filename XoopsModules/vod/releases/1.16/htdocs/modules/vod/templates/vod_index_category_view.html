@@ -1,0 +1,10 @@
+<{if $category}>
+<{if $item.hasavarta}><div style='float:left; clear:both; margin-right:5px; margin-bottom:5px;'><img src='<{$xoops_url}>/<{$item.path}><{$item.avarta}>' width='155px'></div><{/if}>
+<h1><{$smarty.const._MN_VOD_CATEGORY_SELECTED}><{$category.name}></h1>
+<div style="margin-bottom:13px">
+	<div style='float:left; clear:none; margin-right:5px; margin-bottom:5px;'><{$category.description}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_CATEGORY_HITS}>&nbsp;<{$category.hits}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_CATEGORY_VIEWS}>&nbsp;<{$category.views}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_CATEGORY_PURCHASES}>&nbsp;<{$category.purchases}></div>
+</div>
+<{/if}>

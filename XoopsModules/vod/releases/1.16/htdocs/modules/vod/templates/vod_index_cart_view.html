@@ -1,0 +1,74 @@
+<h1><{$smarty.const._MN_VOD_CART_H1}></h1>
+<p><{$smarty.const._MN_VOD_CART_P}></p>
+<div style="margin-top:10px; margin-bottom:15px; border:dash;">
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_VIDEOS}>&nbsp;<{$session.videos}></div>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_TOTAL}>&nbsp;<{$session.total}></div>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_TAX}>&nbsp;<{$session.tax}></div>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_GRAND}>&nbsp;<{$session.grand}></div>
+	<{if $set_email eq false}>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_EMAIL}>&nbsp;<{$session.email}></div>
+	<{/if}>
+	<{if $set_name eq false}>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_NAME}>&nbsp;<{$session.name}></div>
+	<{/if}>
+	<{if $set_pass eq false}>
+	<div style="margin-top:5px; margin-bottom:4px;"><{$smarty.const._MN_VOD_CART_PASSWORDSET}></div>
+	<{/if}>
+</div>
+
+<form action="<{$php_self}>/modules/vod/index.php?op=cart&fct=checkout" method="post">
+<table>
+	<tr class="head">
+		<th align="center"><{$smarty.const._MN_VOD_TH_CATALOGUENO}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_CATEGORY}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_ITEM}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_QUANTITY}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_COST}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_TAX}> (<{$xoConfig.tax}>%)</th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_GRAND}></th>
+		<th align="center"><{$smarty.const._MN_VOD_TH_ACTIONS}></th>
+	</tr>
+	<{foreach item=item from=$cart}>
+	<tr class="<{cycle value='even,odd'}>">
+		<td align="left"><{if $item.prefix}><{$item.prefix}>-<{/if}><{$item.catno}></td>
+		<td align="left"><{$item.category}></td>
+		<td align="left"><{$item.item}></td>
+		<td align="center"><{$item.quantity}></td>
+		<td align="center"><{$item.cost}></td>
+		<td align="center"><{$item.tax}></td>
+		<td align="center"><{$item.grand}></td>
+		<td align="center"><a href="<{$php_self}>?op=cart&fct=remove&vid=<{$item.vid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_CART_REMOVE}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td colspan="5" align="right"><{$smarty.const._MN_VOD_TD_TOTALS}></td>
+		<td align="center"><{$session.tax}></td>
+		<td align="center"><{$session.grand}></td>
+		<td align="center">&nbsp</td>
+	</tr>
+	<{if $set_name eq true}>
+	<tr class="head">
+		<td colspan="4" align="left"><{$smarty.const._MN_VOD_TD_YOURNAME}>&nbsp;<span style='color:rgb(255,0,0);'>*</span></td>
+		<td colspan="4" align="left"><input type="textbox" size="50" maxlen='128' name="name"/></td>
+	</tr>
+	<{/if}>
+	<{if $set_email eq true}>
+	<tr class="head">
+		<td colspan="4" align="left"><{$smarty.const._MN_VOD_TD_YOUREMAIL}>&nbsp;<span style='color:rgb(255,0,0);'>*</span></td>
+		<td colspan="4" align="left"><input type="textbox" size="50" maxlen='128' name="email"/></td>
+	</tr>
+	<{/if}>
+	<{if $set_pass eq true}>
+	<tr class="head">
+		<td colspan="4" align="left"><{$smarty.const._MN_VOD_TD_YOURPASSWORD}>&nbsp;<span style='color:rgb(255,0,0);'>*</span></td>
+		<td colspan="4" align="left"><input type="textbox" size="50" maxlen='128' name="pass"/></td>
+	</tr>
+	<{/if}>
+	<tr class="foot">
+		<td colspan="8" align="right"><input type="submit" name="checkout" value="<{$smarty.const._MN_VOD_TD_CHECKOUT}>" /></td>
+	</tr>
+</table>
+<input type="hidden" name="uri" value="<{$uri}>" />
+<input type="hidden" name="op" value="cart" />
+<input type="hidden" name="fct" value="checkout" />
+</form>

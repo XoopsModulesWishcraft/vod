@@ -1,0 +1,32 @@
+<form action="<{$xoops_url}>/modules/xpayment/?" method="post" name="vod" id="vod">
+<!-- This is the header of the invoice -->
+<input type="hidden" name="op" value="createinvoice">
+<input type="hidden" name="plugin" value="vod">
+<input type="hidden" name="drawfor" value="<{$xoops_sitename}>"><br/>
+<input type="hidden" name="drawto" value="<{$session.name}>">
+<input type="hidden" name="drawto_email" value="<{$session.email}>">
+<input type="hidden" name="currency" value="<{$session.currency}>">
+<input type="hidden" name="key" value="<{$session.key}>">
+<input type="hidden" name="weight_unit" value="kgs">
+<!-- This is the item trail of the invoice -->
+<{foreach item=item key=id from=$cart}>
+<!-- Example Item A -->
+<input type="hidden" name="item[<{$id}>][cat]" value="<{if $item.prefix}><{$item.prefix}>-<{/if}><{$item.catno}>">
+<input type="hidden" name="item[<{$id}>][name]" value="<{$item.item}>">
+<input type="hidden" name="item[<{$id}>][amount]" value="<{$item.cost}>">
+<input type="hidden" name="item[<{$id}>][quantity]" value="<{$item.quantity}>">
+<input type="hidden" name="item[<{$id}>][shipping]" value="0.00">
+<input type="hidden" name="item[<{$id}>][handling]" value="0.00">
+<input type="hidden" name="item[<{$id}>][weight]" value="0.00">
+<input type="hidden" name="item[<{$id}>][tax]" value="<{$item.tax}>">
+<{/foreach}>
+
+<!-- This is the footer of the invoice -->
+<input type="hidden" name="return" value="<{$xoops_url}>/modules/xpayment/return.php">
+<input type="hidden" name="cancel" value="<{$xoops_url}>/modules/xpayment/cancel.php">
+<input type="hidden" name="ipn" value="<{$xoops_url}>/modules/xpayment/ipn.php">
+<input type="submit" name='submit' value="Create An Invoice" />
+</form>
+<script type="text/javascript">
+	document.forms["vod"].submit();
+</script>

@@ -1,0 +1,9 @@
+<{if not $video}>
+<{include file="db:vod_index_category_list.html"}>
+<{if $category}>
+<{include file="db:vod_index_category_view.html"}>
+<{/if}>
+<{include file="db:vod_index_videos_list.html"}>
+<{else}>
+<{include file="db:vod_index_videos_view.html"}>
+<{/if}>

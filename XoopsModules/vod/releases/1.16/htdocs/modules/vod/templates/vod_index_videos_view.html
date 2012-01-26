@@ -1,0 +1,32 @@
+<div style="float;right;"><a href="<{$back_url}>"><{$smarty.const._MN_VOD_VIDEO_BACKTOLIST}></a>&nbsp;|&nbsp;<{if not $video.incart}><a href="<{$php_self}>?op=cart&fct=add&vid=<{$video.vid}>&cid=<{$cid}>&uri=<{$smarty.server.request_uri}>"><{$smarty.const._MN_VOD_CART_ADD}></a><{else}><a href="<{$php_self}>?op=cart&fct=remove&vid=<{$video.vid}>&uri=<{$smarty.server.request_uri}>"><{$smarty.const._MN_VOD_CART_REMOVE}></a><{/if}></div>
+<{if $video}>
+<{if $video.hasavarta}><div style='float:left; clear:both; margin-right:5px; margin-bottom:5px;'><img src='<{$xoops_url}>/<{$video.path}><{$video.avarta}>' width='155px'></div><{/if}>
+<h1><{$video.name}></h1>
+<h2><{$smarty.const._MN_VOD_VIDEO_SUMMARY}></h2>
+<div style="margin-bottom:7px;"><{$video.summary}></div>
+<h2><{$smarty.const._MN_VOD_VIDEO_DETAILS}></h2>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_CATEGORY}>&nbsp;<{$video.cid}></div>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_PRODUCEDBY}>&nbsp;<{$video.producedby}></div>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_STARING}>&nbsp;<{$video.staring}></div>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_YEAR}>&nbsp;<{$video.year}></div>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_LENGTH}>&nbsp;<{$video.length}></div>
+<{if $xoConfig.matrixstream eq true}>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_TOKENTOVIEW}>&nbsp;<{$video.tokens}></div>
+<{else}>
+<div style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_PRICETOVIEW}>&nbsp;<{$video.price}></div>
+<{/if}>
+<{if $xoConfig.tags eq true}>
+<div style="margin-bottom:5px;"><{include file="db:tag_bar.html" tagbar=$video.tagbar}></div>
+<{/if}>
+<div style="margin-bottom:13px;">
+	<div style='float:left; clear:none; margin-right:5px; margin-bottom:5px;'><{$video.description}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_VIDEO_HITS}>&nbsp;<{$video.hits}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_VIDEO_VIEWS}>&nbsp;<{$video.views}></div>
+	<div style='float:left; clear:right; margin-left:5px; margin-bottom:5px;'><{$smarty.const._MN_VOD_VIDEO_PURCHASES}>&nbsp;<{$video.purchases}></div>
+</div>
+<{if $video.haspreview}>
+<h2><{$smarty.const._MN_VOD_VIDEO_PREVIEW}></h2>
+<div style="display:block;<{if $video.preview.width}>width:<{$video.preview.width}>;<{/if}><{if $video.preview.height}>height:<{$video.preview.height}>;<{/if}>" id="div_<{$video.preview.id}>"><{if $video.preview.contents}><{$video.preview.contents}><{else}>&nbsp;<{/if}></div>
+<{/if}>
+<{/if}>
+<div style="float;left;"><a href="<{$back_url}>"><{$smarty.const._MN_VOD_VIDEO_BACKTOLIST}></a>&nbsp;|&nbsp;<{if not $video.incart}><a href="<{$php_self}>?op=cart&fct=add&vid=<{$video.vid}>&cid=<{$cid}>&uri=<{$smarty.server.request_uri}>"><{$smarty.const._MN_VOD_CART_ADD}></a><{else}><a href="<{$php_self}>?op=cart&fct=remove&vid=<{$video.vid}>&uri=<{$smarty.server.request_uri}>"><{$smarty.const._MN_VOD_CART_REMOVE}></a><{/if}></div>
