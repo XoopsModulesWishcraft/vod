@@ -1,0 +1,31 @@
+<h1><{$smarty.const._MN_VOD_CATEGORY_H1}></h1>
+<p><{$smarty.const._MN_VOD_CATEGORY_P}></p>
+<table>
+	<{foreach item=item from=$categories}>
+	<{if $item.tr}>
+	<tr class="<{cycle values="even,odd"}>">
+	<{/if}>
+		<td align='center'>	
+			<div>
+				<a href="<{$php_self}>?cid=<{$item.cid}>&start=<{$start}>&limit=<{$limit}>&order=<{$order}>&sort=<{$sort}>&filter=<{$filter}>">
+				<{if $item.hasavata}><div style='float:left; clear:none; margin-right:5px; margin-bottom:5px;'><img style='clear:none;' src='<{$item.avata_url}>' width='55px'></div><{/if}>
+				<div style='float:left; font-size:1.35em; font-weight:bold; clear:both; margin-bottom:3px;'><{$item.name}></div>
+				<div style='float:left; font-size:0.95em; font-weight:bold; clear:both; margin-bottom:3px;'><{$item.summary}></div>
+				</a>
+				<{if $item.subcategories}>
+					<{foreach item=subitem from=$item.subcategories}>
+						<div style='float:left; font-size:0.65em; font-weight:100; clear:none; margin-right:3px; margin-bottom:3px;'><a href="<{$php_self}>?cid=<{$subitem.cid}>&start=<{$start}>&limit=<{$limit}>&order=<{$order}>&sort=<{$sort}>&filter=<{$filter}>"><{$item.name}></a></div>
+
+					<{/foreach}>
+				<{/if}>
+			</div>
+		</td>
+	<{if $item.trend}>
+	</tr>
+	<{/if}>
+	<{/foreach}>
+	<{if $trcolspan}>
+		<td colspan="<{$trcolspan}>">&nbsp;</td>
+	</tr>
+	<{/if}>
+</table>
