@@ -1,0 +1,15 @@
+<{if $numincart}>
+<div style="float:right;"><font style='font-size:1.25em;'><a href="<{$php_self}>?op=cart&fct=view"><{$smarty.const._MN_VOD_VIEWCART}></a></font></div>
+<{/if}>
+<{if not $video}>
+<{include file="db:vod_index_category_list.html"}>
+<{if $category}>
+<{include file="db:vod_index_category_view.html"}>
+<{/if}>
+<{include file="db:vod_index_videos_list.html"}>
+<{else}>
+<{include file="db:vod_index_videos_view.html"}>
+<{/if}>
+<{if $numincart}>
+<div style="float:left;"><font style='font-size:1.25em;'><a href="<{$php_self}>?op=cart&fct=view"><{$smarty.const._MN_VOD_VIEWCART}></a></font></div>
+<{/if}>
