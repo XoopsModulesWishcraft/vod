@@ -4,8 +4,9 @@
 	$config_handler = xoops_gethandler('config');
 	if (!isset($GLOBALS['vodModule']))
 		$GLOBALS['vodModule'] = $module_handler->getByDirname('vod');
-	if (!isset($GLOBALS['vodModuleConfig']))
-		$GLOBALS['vodModuleConfig'] = $config_handler->getConfigList($GLOBALS['vodModule']->getVar('mid')); 
+	if (is_object($GLOBALS['vodModule']))
+		if (!isset($GLOBALS['vodModuleConfig']))
+			$GLOBALS['vodModuleConfig'] = $config_handler->getConfigList($GLOBALS['vodModule']->getVar('mid')); 
 	
 	require_once($GLOBALS['xoops']->path('class/xoopsformloader.php'));
 	require_once($GLOBALS['xoops']->path('class/pagenav.php'));

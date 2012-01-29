@@ -1,4 +1,15 @@
 ==========================================
+ 2011/01/30 01:26:01 Version 1.17 BETA
+==========================================
+ - Added /tag/plugin/vod.php Tag Module Plugin code added (wishcraft)
+ - Added /xpayment/plugin/vod.php XPayment Module Plugin code added (wishcraft)
+ - Changed /class/cart.php restructing and debugged code added for cart & cart session (wishcraft)
+ - Changed /class/sessions.php restructing and debugged code added for cart & cart session  (wishcraft)
+ - Changed /class/log.php restructing and debugged code added for videos class  (wishcraft)
+ - Changed /index.php restructing and debugged code added for cart & cart session   (wishcraft)
+ - Changed /xoops_version.php Support for New Variables, Constants & Templates; version updated of Application (wishcraft)
+   
+==========================================
  2011/01/27 5:48:01 Version 1.16 ALPHA
 ==========================================
  - Added /cron/notify.php Notification Cron Added & Matrixstream code added (wishcraft)

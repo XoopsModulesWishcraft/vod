@@ -400,7 +400,7 @@
 
 		$ele['parent'] = new VodFormSelectCategory(($as_array==false?_FRM_VOD_FORM_CATEGORY_PARENT:''), $id.'[parent]', $object->getVar('parent'), 1, false, $object->getVar('cid'));
 		$ele['parent']->setDescription(($as_array==false?_FRM_VOD_FORM_CATEGORY_PARENT_DESC:''));
-		$ele['prefix'] = new XoopsFormText(($as_array==false?_FRM_VOD_FORM_CATEGORY_PREFIX:''), $id.'[catno]', ($as_array==false?16:8),32, $object->getVar('prefix'));
+		$ele['prefix'] = new XoopsFormText(($as_array==false?_FRM_VOD_FORM_CATEGORY_PREFIX:''), $id.'[prefix]', ($as_array==false?16:8),32, $object->getVar('prefix'));
 		$ele['prefix']->setDescription(($as_array==false?_FRM_VOD_FORM_CATEGORY_PREFIX_DESC:''));
 		$ele['name'] = new XoopsFormText(($as_array==false?_FRM_VOD_FORM_CATEGORY_NAME:''), $id.'[name]', ($as_array==false?55:21),128, $object->getVar('name'));
 		$ele['name']->setDescription(($as_array==false?_FRM_VOD_FORM_CATEGORY_NAME_DESC:''));

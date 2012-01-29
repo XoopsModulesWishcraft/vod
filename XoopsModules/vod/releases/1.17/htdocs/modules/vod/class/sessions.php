@@ -228,7 +228,7 @@ class VodSessionsHandler extends XoopsPersistableObjectHandler
     			unset($_COOKIE['cart']);
     		}
     	} 
-    	if (is_object($GLOBALS['xoopsUser'])&&!is_object($session)) {
+    	if (is_object($GLOBALS['xoopsUser'])&&!isset($session)) {
     		$criteria = new CriteriaCompo(new Criteria('uid', $GLOBALS['xoopsUser']->getVar('uid')));
     		$criteria->add(new Criteria('`mode`', '_VOD_ENUM_UNINVOICED'));
     		if ($this->getCount($criteria)>0) {
@@ -238,7 +238,7 @@ class VodSessionsHandler extends XoopsPersistableObjectHandler
     		}
     	}
     	$user = vod_getIPData();
-    	if (!is_object($session)) {
+    	if (!isset($session)) {
     		$criteria = new CriteriaCompo(new Criteria('`ip`', $user['ip']));
     		$criteria->add(new Criteria('netaddy', $user['network-addy']));
     		$criteria->add(new Criteria('`mode`', '_VOD_ENUM_UNINVOICED'));
@@ -249,7 +249,7 @@ class VodSessionsHandler extends XoopsPersistableObjectHandler
     		}
     		
     	}
-    	if (!is_object($session)) {
+    	if (!isset($session)) {
     		unset($session);
     		unset($_SESSION['vod']['cart']);
     		unset($_COOKIE['cart']);

@@ -52,7 +52,7 @@
 		<th>&nbsp;</th>
 		<th>&nbsp;</th>
 	</tr>
-	<{foreach item=item from=$videos}>
+	<{foreach item=item from=$pageofvideos}>
 	<tr class="<{cycle values="even,odd"}>">
 		<td rowspan='2' align='center'><{if $item.hasavata}><img src='<{$item.avata_url}>' width='95px'><{else}>&nbsp;<{/if}></td>
 		<td><{$item.cid}></td>

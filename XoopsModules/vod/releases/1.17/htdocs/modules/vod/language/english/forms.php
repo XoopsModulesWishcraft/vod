@@ -1,5 +1,25 @@
 <?php
 
+	// Currency Form
+	define('_FRM_VOD_FORM_CURRENCY_NAME', 'Currency Name');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_NAME', '');
+	define('_FRM_VOD_FORM_CURRENCY_ALIAS', 'Currency Alias');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_ALIAS', '');
+	define('_FRM_VOD_FORM_CURRENCY_CODE', 'Currency ISO Code');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_CODE', '3 Characters');
+	define('_FRM_VOD_FORM_CURRENCY_LEFT', 'Currency Symbol on Left');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_LEFT', '');
+	define('_FRM_VOD_FORM_CURRENCY_RIGHT', 'Currency Symbol on Right');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_RIGHT', '');
+	define('_FRM_VOD_FORM_CURRENCY_DECIMALS', 'Currency Decimal Places');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_DECIMALS', '');
+	define('_FRM_VOD_FORM_CURRENCY_RATE', 'Currency Exchange Rate');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_RATE', 'Based on Default Currency');
+	define('_FRM_VOD_FORM_CURRENCY_DEFAULT', 'Default Currency');
+	define('_FRM_VOD_FORM_DESC_CURRENCY_DEFAULT', '');
+	define('_FRM_VOD_EDIT_CURRENCY', 'Edit this currency - %s');
+	define('_FRM_VOD_NEW_CURRENCY', 'New currency');
+	
 	define('_FRM_VOD_FORM_ISNEW_VOD', 'New Videos');
 	define('_FRM_VOD_FORM_EDIT_VOD', 'Edit Existing Videos');
 	define('_FRM_VOD_FORM_VOD_NAME', 'Name of Video');

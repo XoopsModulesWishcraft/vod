@@ -130,14 +130,16 @@ class VodVideos extends XoopsObject
     
     function toArray($preview=false, $state='list') {
     	$ret = parent::toArray();
+    	
     	if ($this->getVar('mid')>0) {
     		$mimetypes_handler = xoops_getmodulehandler('mimetypes', 'vod');
     		$mimetype = $mimetypes_handler->get($this->getVar('mid'));
     		if (is_object($mimetype))
     			$ret['mimetype'] = $mimetype->toArray();
     	}
+    	
     	$fields = array('width', 'height', 'autoplay', 'control');
-    	switch ($this->getSpecialWithUserAgent("")) {
+    	switch ($this->getSpecialWithUserAgent($_SERVER["HTTP_USER_AGENT"])) {
     		case "A":
     			foreach($fields as $field) {
     				$ret[$field] = $ret['speciala_'.$field];
@@ -151,6 +153,7 @@ class VodVideos extends XoopsObject
     		default:
     			break;
     	}
+    	
     	$ele = vod_videos_get_form($this, true);
     	foreach($ele as $key => $field)
     		$ret['form'][$key] = $field->render();
@@ -179,22 +182,22 @@ class VodVideos extends XoopsObject
     	
     	$sessions_handler = xoops_getmodulehandler('sessions', 'vod');
     	static $_session = null;
-    	if (!is_array($_SESSION['vod']['cart'])||!isset($_SESSION['vod']['cart'])) {
-			$ret['incart'] = false;
-		} else {
-			if (!is_object($_session))
+    	if (isset($_SESSION['vod']['cart']['sessid'])) {
+    		if (!is_object($_session))
 				$_session = $sessions_handler->get($_SESSION['vod']['cart']['sessid']);
 			$ret['incart'] = $_session->inCart($this);
-		}
-		
-    	if (strlen($this->getVar('avata'))>0&&file_exists($GLOBALS['xoops']->path($this->getVar('path').$this->getVar('avata')))) {
+    	} else {
+	    	$ret['incart'] = false;
+		} 
+    	
+		if (strlen($this->getVar('avata'))>0&&file_exists($GLOBALS['xoops']->path($this->getVar('path').$this->getVar('avata')))) {
     		$ret['avata_url'] = $this->getImage('avata');
     		$ret['hasavata'] = true;
     	} else 
     		$ret['hasavata'] = false;
-    		
+
     	$mode = $this->getModeWithUserAgent($_SERVER['HTTP_USER_AGENT']);
-    	$prev = array('width' => $this->getVar('width'), 'height' => $this->getVar('height'), 'id' => $this->getReference(false, $preview), 'source' => '');
+    	$prev = array('width' => $this->getVar('width'), 'height' => $this->getVar('height'), 'id' => $this->getReference(false, $preview), 'source' => $this->getSource($mode, $preview));
     	if (strlen($this->getSource($mode, $preview))>0) {
     		$ret['haspreview'] = true;
 	    	$prev['mode'] = $mode;
@@ -210,7 +213,7 @@ class VodVideos extends XoopsObject
 		    		$prev['height'] = $GLOBALS['vodModuleConfig']['video_height_'.$state];
 					$prev['source'] = $this->getSource($mode, $preview);
 					$prev['id'] = $this->getReference(false, $preview);
-					$html = $this->getHTML(false, $data['width'], $data['height'], '', '', $preview, $state);
+					$html = $this->getHTML(false, $prev['width'], $prev['height'], '', '', $preview, $state);
 		    		if ($GLOBALS['vodModuleConfig'][$mode.'_secure']==true) {
 		    			$prev['contents'] = '';
 						$GLOBALS['xoTheme']->addScript('', array('type'=>'text/javascript'), $this->getJS(false, $prev['width'], $prev['height'], $preview, $state));
@@ -224,7 +227,7 @@ class VodVideos extends XoopsObject
 		    		$prev['height'] = $GLOBALS['vodModuleConfig']['video_height_'.$state];
 					$prev['source'] = $this->getSource($mode, $preview);
 					$prev['id'] = $this->getReference(true, $preview);
-					$html = $this->getHTML(true, $data['width'], $data['height'], '', '', $preview, $state);
+					$html = $this->getHTML(true, $prev['width'], $prev['height'], '', '', $preview, $state);
 		    		if ($GLOBALS['vodModuleConfig'][$mode.'_secure']==true) {
 		    			$prev['contents'] = '';
 						$GLOBALS['xoTheme']->addScript('', array('type'=>'text/javascript'), $this->getJS(true, $prev['width'], $prev['height'], $preview, $state));
@@ -237,46 +240,50 @@ class VodVideos extends XoopsObject
     	} else {
     		$ret['haspreview'] = false;
     	}
-    	foreach($prev as $key => $value) {
-    		$ret['preview_data_'.$key] = $value;
-    	}
+    	
     	if ($GLOBALS['vodModuleConfig']['tags']&&file_exists($GLOBALS['xoops']->path("/modules/tag/include/tagbar.php"))) {
 			include_once XOOPS_ROOT_PATH."/modules/tag/include/tagbar.php";
 			$ret['tagbar'] = tagBar($this->getVar('vid'), $this->getVar('cid'));
 		}
+		
     	return $ret;
     }   
     
     function getHTML($block = false, $width=0, $height=0, $agent = '', $ip = '', $preview = false, $state = 'list') {
+    	
     	if (empty($ip))
     		$ip = $this->getIP();
     	if (empty($agent))
     		$agent = $_SERVER['HTTP_USER_AGENT'];
+    	
     	$mode = $this->getModeWithUserAgent($agent);
     	include_once ($GLOBALS['xoops']->path('class/template.php'));
-		if (!isset($GLOBALS['xoopsTpl']))
-    		$GLOBALS['xoopsTpl'] = new XoopsTpl();
+		$GLOBALS['vodTpl'] = new XoopsTpl();
+    	
     	$videos = array();
-    	$videos = $this->toArray($preview, $state);
+    	$videos = parent::toArray();
     	$videos['mode'] = $mode;
     	$videos['source'] = $this->getSource($mode, $preview);
     	$videos['id'] = $this->getReference($block, $preview);
     	$videos['width'] = (!empty($height)&&!empty($width)&&$width&&$height?$width:($this->getSpecialWithUserAgent($agent)=='A'?$this->getVar('speciala_width'):($this->getSpecialWithUserAgent($agent)=='B'?$this->getVar('specialb_width'):($this->getVar('width')))));
     	$videos['height'] = (!empty($height)&&!empty($height)&&$height&&$height?$height:($this->getSpecialWithUserAgent($agent)=='A'?$this->getVar('speciala_height'):($this->getSpecialWithUserAgent($agent)=='B'?$this->getVar('specialb_height'):($this->getVar('height')))));
-    	$GLOBALS['xoopsTpl']->assign('videos', $videos);
+    	
+    	$GLOBALS['vodTpl']->assign('videos', $videos);
     	if (isset($videos['mimetype']))
-    		$GLOBALS['xoopsTpl']->assign('mimetype', $videos['mimetype']);
-    	$GLOBALS['xoopsTpl']->assign('xoConfig', $this->_ModConfig);
-    	$GLOBALS['xoopsTpl']->assign('iframe', isset($_REQUEST['iframe']));
-    	$GLOBALS['xoopsTpl']->assign('preview', $preview);
-    	$GLOBALS['xoopsTpl']->assign('state', $state);
+    		$GLOBALS['vodTpl']->assign('mimetype', $videos['mimetype']);
+    	$GLOBALS['vodTpl']->assign('xoConfig', $this->_ModConfig);
+    	$GLOBALS['vodTpl']->assign('iframe', isset($_REQUEST['iframe']));
+    	$GLOBALS['vodTpl']->assign('preview', $preview);
+    	$GLOBALS['vodTpl']->assign('state', $state);
+    	
     	ob_start();
     	if ($block == false)
-    		$GLOBALS['xoopsTpl']->display('db:vod_json_'.$mode.'_videos.html');
+    		$GLOBALS['vodTpl']->display('db:vod_json_'.$mode.'_videos.html');
     	else 
-    		$GLOBALS['xoopsTpl']->display('db:vod_json_block_'.$mode.'_videos.html');
+    		$GLOBALS['vodTpl']->display('db:vod_json_block_'.$mode.'_videos.html');
     	$data = ob_get_contents();
     	ob_end_clean();
+    	
     	return $data;
     }
     

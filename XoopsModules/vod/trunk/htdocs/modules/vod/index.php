@@ -27,8 +27,13 @@
 		$sessions_handler =& xoops_getmodulehandler('sessions', 'vod');
 		
 		$sessions = $sessions_handler->intialiseCart();
-		if (is_array($_SESSION['vod']['cart'])&&$_SESSION['vod']['cart']!=false) {
-			setcookie('cart', serialize($_SESSION['vod']['cart']), 3600*24*30);
+		if (isset($_SESSION['vod']['cart'])) {
+			if (is_array($_SESSION['vod']['cart'])&&$_SESSION['vod']['cart']!=false) {
+				setcookie('cart', serialize($_SESSION['vod']['cart']), 3600*24*30);
+			} else {
+				$cart = false;
+				setcookie('cart', '', 3600*24*30);
+			}
 		} else {
 			$cart = false;
 			setcookie('cart', '', 3600*24*30);
@@ -36,11 +41,13 @@
 		
 		$xoopsOption['template_main'] = 'vod_index.html';
 		include($GLOBALS['xoops']->path('/header.php'));
-		$GLOBALS['xoopsTpl']->assign('numincart', $_SESSION['vod']['cart']['videos']);
+		if (isset($_SESSION['vod']['cart'])) 
+			$GLOBALS['xoopsTpl']->assign('numincart', $_SESSION['vod']['cart']['videos']);
 		$GLOBALS['xoopsTpl']->assign('php_self', $_SERVER['PHP_SELF']);
 		$GLOBALS['xoopsTpl']->assign('back_url', $uri);
 		$GLOBALS['xoopsTpl']->assign('uri', urlencode($_SERVER['REQUEST_URI']));
 		$cathits=false;
+		
 		if ($vid>0) {
 			$video = $videos_handler->get($vid);
 			$video->setVar('hits', $video->getVar('hits')+1);
@@ -53,6 +60,7 @@
 			}
 			$GLOBALS['xoopsTpl']->assign('video', $video->toArray($preview, 'main'));
 		}
+		
 		if ($cid>0) {
 			$category = $category_handler->get($cid);
 			if ($cathits==false) {
@@ -61,6 +69,7 @@
 			}
 			$GLOBALS['xoopsTpl']->assign('category', $category->toArray());
 		}
+		
 		$categories = array();
 		$criteria = new Criteria('parent', $cid);
 		$i = 0;
@@ -86,6 +95,7 @@
 				$categories[$cidb]['trend'] = false;
 			}
 		}
+		
 		if ($i<>0)
 			$GLOBALS['xoopsTpl']->assign('trcolspan', ($GLOBALS['vodModuleConfig']['cat_per_row']-$ie));
 		$GLOBALS['xoopsTpl']->assign('categories', $categories);
@@ -99,7 +109,7 @@
 					break;
 				default:
 				case "list":				
-						
+					
 					include_once $GLOBALS['xoops']->path( "/class/pagenav.php" );
 					
 					$criteria = $videos_handler->getFilterCriteria($filter);
@@ -130,12 +140,14 @@
 					$videos = $videos_handler->getObjects($criteria, true);
 					foreach($videos as $vid => $video) {
 						if (is_object($video))
-							$GLOBALS['xoopsTpl']->append('videos', $video->toArray($preview, 'list'));
+							$GLOBALS['xoopsTpl']->append('pageofvideos', $video->toArray($preview, 'list'));
 					}
+					
 					if ($GLOBALS['vodModuleConfig']['force_jquery']&&!isset($GLOBALS['loaded_jquery'])) {
 						$GLOBALS['xoTheme']->addScript(XOOPS_URL._MI_VOD_JQUERY, array('type'=>'text/javascript'));
 						$GLOBALS['loaded_jquery']=true;
 					}
+					
 					break;		
 			}
 		case 'cart':

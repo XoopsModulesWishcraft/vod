@@ -112,16 +112,16 @@
 	define('_MI_VOD_HTML5_VIDEOS_DESC', 'This is the HTML5 videos selected when a useragent is specified');
 	define('_MI_VOD_OTHER_VIDEOS', 'Other Videos');
 	define('_MI_VOD_OTHER_VIDEOS_DESC', 'This is the Other videos selected when a useragent is specified');
-	define('_MI_VOD_LOAD_VOD', 'Load Vod in these videos sessions');
+	define('_MI_VOD_LOAD_VOD', 'Load Flowplayer in these videos sessions');
 	define('_MI_VOD_LOAD_VOD_DESC', 'This is the intances that load vod (Do not change unless you know what you are doing)');
 	define('_MI_VOD_LOAD_VIDEOJS', 'Load Video-js in these videos sessions');
 	define('_MI_VOD_LOAD_VIDEOJS_DESC', 'This is the intances that load HTML5 Video-js (Do not change unless you know what you are doing)');
 	
 	//Enumerators
-	define('_MI_VOD_FLASH', 'Flash Videos (Vod)');
+	define('_MI_VOD_FLASH', 'Flash Videos (Flowplayer)');
 	define('_MI_VOD_HTML5', 'HTML5 Videos (Video-js)'); 
 	define('_MI_VOD_IOS', 'Apple OS Videos (Video-js)');
-	define('_MI_VOD_RTMP', 'RTMP Stream Videos (Vod)');
+	define('_MI_VOD_RTMP', 'RTMP Stream Videos (Flowplayer)');
 	define('_MI_VOD_RTSP', 'RTSP Stream Videos (Video-js)');
 	define('_MI_VOD_OTHER', 'Other Videos');
 	define('_MI_VOD_SILVERLIGHT', 'Silverlight Videos');

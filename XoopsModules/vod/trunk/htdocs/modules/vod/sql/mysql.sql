@@ -198,7 +198,7 @@ CREATE TABLE `vod_videos` (
 
 CREATE TABLE `vod_log` (
   `log_id` bigint(25) unsigned NOT NULL AUTO_INCREMENT,
-  `class` enum('cart','sessions','currency','category','mimetypes','video','external','unknown') DEFAULT 'unknown',
+  `class` enum('cart','sessions','currency','category','mimetypes','videos','external','unknown') DEFAULT 'unknown',
   `file` varchar(64) DEFAULT NULL,
   `path` varchar(128) DEFAULT NULL,
   `line` int(15) unsigned DEFAULT '0',

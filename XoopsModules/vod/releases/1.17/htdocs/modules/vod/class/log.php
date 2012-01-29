@@ -21,7 +21,7 @@ class VodLog extends XoopsObject
     function VodLog($fid = null)
     {
         $this->initVar('log_id', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('class', XOBJ_DTYPE_ENUM, 'unknown', false, false, false, array('cart','sessions','currency','category','mimetypes','video','external','unknown'));
+		$this->initVar('class', XOBJ_DTYPE_ENUM, 'unknown', false, false, false, array('cart','sessions','currency','category','mimetypes','videos','external','unknown'));
 		$this->initVar('file', XOBJ_DTYPE_TXTBOX, null, false, 64);
 		$this->initVar('path', XOBJ_DTYPE_TXTBOX, null, false, 128);
 		$this->initVar('line', XOBJ_DTYPE_INT, null, false);

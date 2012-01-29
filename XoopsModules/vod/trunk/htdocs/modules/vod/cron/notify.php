@@ -36,7 +36,7 @@
 			$xoopsMailer->setHTML(true);
 			$xoopsMailer->setTemplateDir($GLOBALS['xoops']->path('/modules/vod/language/'.$GLOBALS['xoopsConfig']['language'].'/mail_templates/'));
 			$xoopsMailer->setTemplate('vod_video_available_cart.html');
-			$xoopsMailer->setSubject(sprintf(_VOD_EMAIL_VIDEO_AVAILABLE_SUBJECT, $videos[$cart->getVar('vid')]->getVar('name'), date(_DATESTRING, time().$GLOBALS['vodModuleConfig']['purchase_expires'])));
+			$xoopsMailer->setSubject(sprintf(_VOD_EMAIL_VIDEO_AVAILABLE_SUBJECT, $videos[$cart->getVar('vid')]->getVar('name'), date(_DATESTRING, time()+$GLOBALS['vodModuleConfig']['purchase_expires'])));
 			
 			$xoopsMailer->setToEmails($sessions[$cart->getVar('sessid')]->getVar('email'));
 			
@@ -51,7 +51,8 @@
 			$xoopsMailer->assign("SUMMARY", $videos[$cart->getVar('vid')]->getVar('summary'));
 			$xoopsMailer->assign("CATEGORY", $categories[$cart->getVar('cid')]->getVar('name'));
 			$xoopsMailer->assign("URL", $videos[$cart->getVar('vid')]->getViewingURL($sessions[$cart->getVar('sessid')], $cart));
-			$xoopsMailer->assign("EXPIRES", date(_DATESTRING, time().$GLOBALS['vodModuleConfig']['purchase_expires']));
+			$xoopsMailer->assign("EXPIRES", date(_DATESTRING, time()+$GLOBALS['vodModuleConfig']['purchase_expires']));
+			$xoopsMailer->assign("EXPIRE", date(_DATESTRING, time()+$GLOBALS['vodModuleConfig']['purchase_expires']));
 			$xoopsMailer->assign("INVURL", $sessions[$cart->getVar('sessid')]->getVar('url'));
 			
 			if ($GLOBALS['vodModuleConfig']['matrixstream']==true&&$sessions[$cart->getVar('sessid')]->getVar('uid')>0&&$cart->getVar('pid')>0) {
@@ -69,7 +70,7 @@
 				if ($subscribed_handler->insert($subscription, true)) {
 					if($xoopsMailer->send() ){
 						$cart->setVar('notified', time());
-						$cart->setVar('expires', time().$GLOBALS['vodModuleConfig']['purchase_expires']);
+						$cart->setVar('expires', time()+$GLOBALS['vodModuleConfig']['purchase_expires']);
 						$cart_handler->insert($cart);
 					}
 				}
