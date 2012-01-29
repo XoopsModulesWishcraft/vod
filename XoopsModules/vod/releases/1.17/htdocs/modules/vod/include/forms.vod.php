@@ -323,22 +323,22 @@
 	    	$ele['state'] = new XoopsFormHidden('state['.$id.']', 'new' );
 	    }
 	    
-	    $ele['name'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_NAME'):''), $id.'[name]', 35, 128, $object->getVar('name') );
-	    $ele['name']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_NAME'):''));
-	    $ele['alias'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_ALIAS'):''), $id.'[alias]', 35, 128, $object->getVar('alias') );
-	    $ele['alias']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_ALIAS'):''));
-	    $ele['code'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_CODE'):''), $id.'[code]', 5, 3, $object->getVar('code') );
-	    $ele['code']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_CODE'):''));
-	    $ele['left'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_LEFT'):''), $id.'[left]', 5, 2, $object->getVar('left') );
-	    $ele['left']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_LEFT'):''));
-	    $ele['right'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_RIGHT'):''), $id.'[right]', 5, 2, $object->getVar('right') );
-	    $ele['right']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_RIGHT'):''));
-	    $ele['decimals'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_DECIMALS'):''), $id.'[decimals]', 15, 15, $object->getVar('decimals') );
-	    $ele['decimals']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_DECIMALS'):''));
-	    $ele['rate'] = new XoopsFormText(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_RATE'):''), $id.'[rate]', 20, 19, $object->getVar('rate') );
-	    $ele['rate']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_RATE'):''));
-	    $ele['default'] = new XoopsFormRadioYN(($titles==true?constant('_FRM_VOD_FORM_CURRENCY_DEFAULT'):''), $id.'[default]', $object->getVar('default') );
-	    $ele['default']->setDescription(($titles==true?constant('_FRM_VOD_FORM_DESC_CURRENCY_DEFAULT'):''));
+	    $ele['name'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_NAME'):''), $id.'[name]', 35, 128, $object->getVar('name') );
+	    $ele['name']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_NAME'):''));
+	    $ele['alias'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_ALIAS'):''), $id.'[alias]', 35, 128, $object->getVar('alias') );
+	    $ele['alias']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_ALIAS'):''));
+	    $ele['code'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_CODE'):''), $id.'[code]', 5, 3, $object->getVar('code') );
+	    $ele['code']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_CODE'):''));
+	    $ele['left'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_LEFT'):''), $id.'[left]', 5, 2, $object->getVar('left') );
+	    $ele['left']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_LEFT'):''));
+	    $ele['right'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_RIGHT'):''), $id.'[right]', 5, 2, $object->getVar('right') );
+	    $ele['right']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_RIGHT'):''));
+	    $ele['decimals'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_DECIMALS'):''), $id.'[decimals]', 15, 15, $object->getVar('decimals') );
+	    $ele['decimals']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_DECIMALS'):''));
+	    $ele['rate'] = new XoopsFormText(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_RATE'):''), $id.'[rate]', 20, 19, $object->getVar('rate') );
+	    $ele['rate']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_RATE'):''));
+	    $ele['default'] = new XoopsFormRadioYN(($as_array==false?constant('_FRM_VOD_FORM_CURRENCY_DEFAULT'):''), $id.'[default]', $object->getVar('default') );
+	    $ele['default']->setDescription(($as_array==false?constant('_FRM_VOD_FORM_DESC_CURRENCY_DEFAULT'):''));
 	   
 	    $ele['op'] = new XoopsFormHidden('op', 'currency' );
 	    $ele['fct'] = new XoopsFormHidden('fct', 'save' );
