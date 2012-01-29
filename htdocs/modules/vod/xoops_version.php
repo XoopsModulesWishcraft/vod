@@ -92,11 +92,11 @@ $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 // Tables created by sql file (without prefix!)
 $i=0;
 $modversion['tables'][$i++] = "vod_cart";
+$modversion['tables'][$i++] = "vod_cart_sessions";
 $modversion['tables'][$i++] = "vod_category";
 $modversion['tables'][$i++] = "vod_currency";
 $modversion['tables'][$i++] = "vod_log";
 $modversion['tables'][$i++] = "vod_mimetypes";
-$modversion['tables'][$i++] = "vod_sessions";
 $modversion['tables'][$i++] = "vod_videos";
 
 // Blocks
