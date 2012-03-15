@@ -1,0 +1,64 @@
+<h1><{$smarty.const._AM_VOD_SESSIONS_H1}></h1>
+<p><{$smarty.const._AM_VOD_SESSIONS_P}></p>
+<div style="clear:both; height:45px;">
+	<div style="float:right; height:45px;"><{$pagenav}></div>
+</div>
+
+<form action="<{$php_self}>" method='post'>
+<table>
+	<tr class="head">
+		<th><{$sessid_th}></th>
+		<th><{$mode_th}></th>
+		<th><{$session_id_th}></th>
+		<th><{$iid_th}></th>
+		<th><{$uid_th}></th>
+		<th><{$name_th}></th>
+		<th><{$email_th}></th>
+		<th><{$ip_th}></th>
+		<th><{$videos_th}></th>
+		<th><{$total_usd_th}></th>
+		<th><{$total_aud_th}></th>
+		<th><{$total_th}></th>
+		<th><{$currency_th}></th>
+		<th><{$invoiced_th}></th>
+		<th><{$paid_th}></th>
+		<th><{$canceled_th}></th>
+		<th><{$created_th}></th>
+		<th><{$updated_th}></th>
+		<th><{$smarty.const._AM_VOD_TH_ACTIONS}></th>
+	</tr>
+	<{foreach item=item from=$sessions}>
+	<tr class="<{cycle values="even,odd"}>">
+		<td align='center'><{$item.sessid}><{$item.form.id}></td>
+		<td align='center'><{$item.mode}></td>
+		<td align='center'><{$item.session_id}></td>
+		<td align='center'><{$item.iid}></td>
+		<td align='center'><{$item.uid}></td>
+		<td align='center'><{$item.name}></td>
+		<td align='center'><{$item.email}></td>
+		<td align='center'><{$item.ip}></td>
+		<td align='center'><{$item.videos}></td>
+		<td align='center'><{$item.total_usd}></td>
+		<td align='center'><{$item.total_aud}></td>
+		<td align='center'><{$item.total}></td>
+		<td align='center'><{$item.currency}></td>
+		<td align='right'><{$item.invoiced}></td>
+		<td align='right'><{$item.paid}></td>
+		<td align='right'><{$item.canceled}></td>
+		<td align='right'><{$item.form.created}></td>
+		<td align='right'><{$item.form.updated}></td>
+		<td align='right'><a href="<{$php_self}>?op=sessions&fct=cart&id=<{$item.sessid}>&start=<{$start}>&limit=<{$limit}>&order=<{$order}>&sort=<{$sort}>&filter=<{$filter}>"><{$smarty.const._AM_VOD_SESSIONS_VIEWCART}></a>&nbsp;|&nbsp;<a href="<{$php_self}>?op=sessions&fct=cancel&id=<{$item.sessid}>&start=<{$start}>&limit=<{$limit}>&order=<{$order}>&sort=<{$sort}>&filter=<{$filter}>"><{$smarty.const._AM_VOD_SESSIONS_CANCEL}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td colspan="19"><!-- <input type='submit' name='submit' value='<{$smarty.const._SUBMIT}>'/> -->&nbsp;</td>
+	</tr>
+</table>
+<input type='hidden' name='op' value='sessions'/>
+<input type='hidden' name='fct' value='savelist'/>
+<input type='hidden' name='start' value='<{$start}>'/>
+<input type='hidden' name='limit' value='<{$limit}>'/>
+<input type='hidden' name='order' value='<{$order}>'/>
+<input type='hidden' name='sort' value='<{$sort}>'/>
+<input type='hidden' name='filter' value='<{$filter}>'/>
+</form>

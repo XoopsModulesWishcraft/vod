@@ -1,0 +1,99 @@
+<h1><{$smarty.const._MN_VOD_VIDEOS_H1}></h1>
+<p><{$smarty.const._MN_VOD_VIDEOS_P}></p>
+<div style="clear:both; height:45px;">
+	<div style="float:right; height:45px;"><{$pagenav}></div>
+</div>
+
+<form action="<{$php_self}>" method='post'>
+<table>
+	<tr class="head">
+		<th><{$avata_th}></th>
+		<th><{$cid_th}></th>
+		<th><{$catno_th}></th>
+		<th><{$name_th}></th>
+		<th><{$producedby_th}></th>
+		<th><{$staring_th}></th>
+		<th><{$year_th}></th>
+		<th><{$length_th}></th>
+		<{if $xoConfig.matrixstream eq true}>
+		<th><{$tokens_th}></th>
+		<{else}>
+		<th><{$price_th}></th>
+		<th><{$currency_th}></th>
+		<{/if}>
+		<th><{$views_th}></th>
+		<th><{$hits_th}></th>
+		<{if $xoConfig.tags eq true}>
+		<th><{$tags_th}></th>
+		<{/if}>
+		<th><{$smarty.const._MN_VOD_TH_ACTIONS}></th>
+		<th><{$preview_th}></th>
+	</tr>
+	<tr class="filter">
+		<th>&nbsp;</th>
+		<th><{$filter_cid_th}></th>
+		<th><{$filter_catno_th}></th>
+		<th><{$filter_name_th}></th>
+		<th><{$filter_producedby_th}></th>
+		<th><{$filter_staring_th}></th>
+		<th><{$filter_year_th}></th>
+		<th><{$filter_length_th}></th>
+		<{if $xoConfig.matrixstream eq true}>
+		<th><{$filter_tokens_th}></th>
+		<{else}>
+		<th><{$filter_price_th}></th>
+		<th><{$filter_currency_th}></th>
+		<{/if}>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+		<{if $xoConfig.tags eq true}>
+		<th><{$filter_tags_th}></th>
+		<{/if}>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+	<{foreach item=item from=$pageofvideos}>
+	<tr class="<{cycle values="even,odd"}>">
+		<td rowspan='2' align='center'><{if $item.hasavata}><img src='<{$item.avata_url}>' width='95px'><{else}>&nbsp;<{/if}></td>
+		<td><{$item.cid}></td>
+		<td align='center'><{if $item.prefix}><{$item.prefix}>-<{/if}><{$item.catno}></td>
+		<td align='center'><{$item.name}></td>
+		<td align='center'><{$item.producedby}></td>
+		<td align='center'><{$item.staring}></td>
+		<td align='center'><{$item.year}></td>
+		<td align='center'><{$item.length}></td>
+		<{if $xoConfig.matrixstream eq true}>
+		<td><{$item.tokens}></td>
+		<{else}>
+		<td><{$item.price}></td>
+		<td><{$item.currency}></td>
+		<{/if}>
+		<td align='right'><{$item.views}></td>
+		<td align='right'><{$item.hits}></td>
+		<{if $xoConfig.tags eq true}>
+		<td align='right'><{if $item.tagbar}><{include file="db:tag_bar.html" tagbar=$item.tagbar}><{/if}></td>
+		<{/if}>
+		<td align='right' <{if not $item.haspreview}>colspan="2"<{/if}>><a href="<{$php_self}>?op=videos&fct=details&start=<{$start}>&limit=<{$limit}>&order=<{$order}>&sort=<{$sort}>&filter=<{$filter}>&vid=<{$item.vid}>&cid=<{$cid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_VIDEO_DETAILS}></a>&nbsp;|&nbsp;<{if not $xoConfig.cart}><{if $item.cost}><{if not $item.incart}><a href="<{$php_self}>?op=cart&fct=add&vid=<{$item.vid}>&cid=<{$cid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_CART_ADD}></a><{else}><a href="<{$php_self}>?op=cart&fct=remove&vid=<{$item.vid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_CART_REMOVE}></a><{/if}><{else}><a href="<{$php_self}>?op=videos&fct=view&vid=<{$item.vid}>&cid=<{$cid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_PURCHASE_FREE}></a><{/if}><{else}><{if $item.cost}><a href="<{$php_self}>?op=cart&fct=add&vid=<{$item.vid}>&cid=<{$cid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_PURCHASE_COST}></a><{else}><a href="<{$php_self}>?op=videos&fct=view&vid=<{$item.vid}>&cid=<{$cid}>&uri=<{$uri}>"><{$smarty.const._MN_VOD_PURCHASE_FREE}></a><{/if}><{/if}></td>
+		<{if $item.haspreview}>
+		<td rowspan='2' align='center'><div style="display:block;<{if strlen((string)$item.preview_data_width)>0}>width:<{$item.preview_data_width}>;<{/if}><{if strlen((string)$item.preview_data_height)}>height:<{$item.preview_data_height}>;<{/if}>" id="div_<{$item.preview_data_id}>"><{if $item.preview_data_contents}><{$item.preview_data_contents}><{else}>&nbsp;<{/if}></div></td>
+		<{/if}>
+	</tr>
+	<tr class="<{cycle values="odd,even"}>">
+		<td <{if $xoConfig.matrixstream eq true}>colspan="12"<{else}>colspan="13"<{/if}>><{$item.summary}></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td <{if $xoConfig.matrixstream eq true}>colspan="14"<{else}>colspan="15"<{/if}>><!-- <input type='submit' name='submit' value='<{$smarty.const._SUBMIT}>'/>  -->&nbsp;</td>
+	</tr>
+</table>
+<input type='hidden' name='op' value='videos'/>
+<input type='hidden' name='fct' value='playlist'/>
+<input type='hidden' name='uri' value='<{$uri}>'/>
+<input type='hidden' name='cid' value='<{$cid}>'/>
+<input type='hidden' name='start' value='<{$start}>'/>
+<input type='hidden' name='limit' value='<{$limit}>'/>
+<input type='hidden' name='order' value='<{$order}>'/>
+<input type='hidden' name='sort' value='<{$sort}>'/>
+<input type='hidden' name='filter' value='<{$filter}>'/>
+</form>
+

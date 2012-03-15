@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>Video on Demand Cart : XOOPS Site</title>
+	<meta name="robots" content="index,follow" />
+	<meta name="keywords" content="xoops, web applications, web 2.0, sns, news, technology, headlines, linux, software, download, downloads, free, community, forum, bulletin board, bbs, php, survey, polls, kernel, comment, comments, portal, odp, open source, opensource, FreeSoftware, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site, blog, wiki, module, modules, theme, themes, cms, content management" />
+	
+	<meta name="description" content="XOOPS is a dynamic Object Oriented based open source portal script written in PHP." />
+	<meta name="rating" content="general" />
+	<meta name="author" content="XOOPS" />
+	<meta name="copyright" content="Copyright @ 2001-2011" />
+	<meta name="generator" content="XOOPS" />
+</head>
+<body id="vod" >
+<center>Redirecting you to invoice & payment gateway!</center>;
+<form id='vodtoxpayment' action='<{$xoops_url}>/modules/xpayment/?' method='post'>
+<input type="hidden" name="op" value="createinvoice">
+<input type="hidden" name="plugin" value="vod">
+<input type="hidden" name="drawfor" value="<{$xoops_sitename}>">
+<input type="hidden" name="drawto" value="<{$session.name}>">
+<input type="hidden" name="drawto_email" value="<{$session.email}>">
+<input type="hidden" name="currency" value="<{$session.currency}>">
+<input type="hidden" name="key" value="<{$session.key}>">
+<input type="hidden" name="weight_unit" value="kgs">
+<input type="hidden" name="topayment" value="1">
+<{foreach item=item key=id from=$cart}>
+<input type="hidden" name="item[A<{$id}>][cat]" value="<{if $item.prefix}><{$item.prefix}>-<{/if}><{$item.catno}>">
+<input type="hidden" name="item[A<{$id}>][name]" value="<{$item.item}>">
+<input type="hidden" name="item[A<{$id}>][amount]" value="<{$item.cost}>">
+<input type="hidden" name="item[A<{$id}>][quantity]" value="<{$item.quantity}>">
+<input type="hidden" name="item[A<{$id}>][shipping]" value="0.00">
+<input type="hidden" name="item[A<{$id}>][handling]" value="0.00">
+<input type="hidden" name="item[A<{$id}>][weight]" value="0.00">
+<input type="hidden" name="item[A<{$id}>][tax]" value="<{$item.tax}>">
+<{/foreach}>
+<input type="hidden" name="return" value="<{$xoops_url}>/modules/xpayment/return.php">
+<input type="hidden" name="cancel" value="<{$xoops_url}>/modules/xpayment/cancel.php">
+<input type="hidden" name="ipn" value="<{$xoops_url}>/modules/xpayment/ipn.php">
+</form>
+<script type="text/javascript">
+	document.forms['vodtoxpayment'].submit();
+</script>
+</body>
+</html>

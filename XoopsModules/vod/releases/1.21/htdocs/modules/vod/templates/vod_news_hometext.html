@@ -1,0 +1,19 @@
+<{if $video.hasavata}><div style='float:left; clear:both; margin-right:5px; margin-bottom:5px;'><img src='<{$video.avata_url}>' width='155px'></div><{/if}>
+<h1><{$video.name}></h1>
+<h2><{$smarty.const._MN_VOD_VIDEO_SUMMARY}></h2>
+<div style="margin-bottom:7px;"><{$video.summary}></div>
+<h2><{$smarty.const._MN_VOD_VIDEO_DETAILS}></h2>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_CATEGORY}>&nbsp;<{$video.cid}></p>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_PRODUCEDBY}>&nbsp;<{$video.producedby}></p>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_STARING}>&nbsp;<{$video.staring}></p>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_YEAR}>&nbsp;<{$video.year}></p>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_LENGTH}>&nbsp;<{$video.length}></p>
+<{if $xoConfig.matrixstream eq true}>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_TOKENTOVIEW}>&nbsp;<{$video.tokens}></p>
+<{else}>
+<p style="margin-bottom:5px;"><{$smarty.const._MN_VOD_VIDEO_PRICETOVIEW}>&nbsp;<{$video.price}></p>
+<{/if}>
+<{if $xoConfig.tags eq true}>
+<p style="margin-bottom:5px;"><{include file="db:tag_bar.html" tagbar=$video.tagbar}></p>
+<{/if}>
+<p align='center' style="font-size:1.55em;"><a href="<{$geturl}>"><{if $video.cost}>Purchase a viewing of this video<{else}>Watch Video Right Now<{/if}></a></p>

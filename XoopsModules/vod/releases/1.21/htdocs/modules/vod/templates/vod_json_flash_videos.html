@@ -1,0 +1,6 @@
+<{if $xoConfig.iframe && $iframe==true}>
+<iframe src="<{$xoops_url}>/modules/vod/?vid=<{$videos.vid}>&state=<{$state}>&preview=<{$preview}>&iframe=1&width=<{$videos.width}>&height=<{$videos.height}>&_returned=<{php}> echo seralize($GLOBALS['_returned']); <{/php}>" width="<{$videos.width}>" height="<{$videos.height}>"/></iframe>
+<{else}>
+<a href="<{$videos.source}>" style="display:block;<{if $videos.width}>width:<{$videos.width}>;<{/if}><{if $videos.height}>height:<{$videos.height}>;<{/if}>" id="<{$videos.id}>"><{if $player.image}><img src="<{$player.image}>" style="display:block;<{if $player.width}>width:<{$player.width}>;<{/if}><{if $player.height}>height:<{$player.height}>;<{/if}>"/><{/if}></a>
+<{/if}> 
+
