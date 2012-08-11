@@ -1,25 +1,25 @@
 <?php
 
 	// JSON Messages
-	define('_MN_VOD_TOKEN_KEY_EXPIRED', 'Passkey token has expired please refesh the page!');
-	define('_MN_VOD_NO_USER', 'User not found!');
+	define('_MN_VOD_TOKEN_KEY_EXPIRED','Passkey token has expired please refesh the page!');
+	define('_MN_VOD_NO_USER','User not found!');
 	
 	// Error Messages
-	define('_MN_VOD_NO_DEFAULT', 'No Default Video Stream specified in the admin or video doesn\'t exist!');
-	define('_MN_VOD_NO_DEFAULT_TITLE', 'No Default');
+	define('_MN_VOD_NO_DEFAULT','No Default Video Stream specified in the admin or video doesn\'t exist!');
+	define('_MN_VOD_NO_DEFAULT_TITLE','No Default');
 	
 	// Version 1.07
 	// JSON Messages
-	define('_MN_VOD_SESSION_EXPIRED', 'Server Session Expired or None Existent!');
+	define('_MN_VOD_SESSION_EXPIRED','Server Session Expired or None Existent!');
 	
 	// Version 1.16
 	// Redirection Messages
-	define('_MN_VOD_MSG_YOUHAVETO_PAY_INVOICE_BEFORE_CONTINUING', 'You have an outstanding Invoice that need to be paided or canceled before you can continue using the Video on Demand Application!');
-	define('_MN_VOD_MSG_ITEMADDEDTOCART', 'Video Item Added to Cart');
-	define('_MN_VOD_MSG_ITEMREMOVEDFROMCART', 'Video Item Removed from Cart');
-	define('_MN_VOD_MSG_EMAILADDRESS_NOTVALID', 'Email Address not a valid email address!');
-	define('_MN_VOD_MSG_NAME_EMPTY', 'Your name field is empty!');
-	define('_MN_VOD_MSG_PASSWORD_EMPTY', 'Password not set and is required!');
+	define('_MN_VOD_MSG_YOUHAVETO_PAY_INVOICE_BEFORE_CONTINUING','You have an outstanding Invoice that need to be paided or canceled before you can continue using the Video on Demand Application!');
+	define('_MN_VOD_MSG_ITEMADDEDTOCART','Video Item Added to Cart');
+	define('_MN_VOD_MSG_ITEMREMOVEDFROMCART','Video Item Removed from Cart');
+	define('_MN_VOD_MSG_EMAILADDRESS_NOTVALID','Email Address not a valid email address!');
+	define('_MN_VOD_MSG_NAME_EMPTY','Your name field is empty!');
+	define('_MN_VOD_MSG_PASSWORD_EMPTY','Password not set and is required!');
 	
 	// Smarty Template Constants
 	define('_MN_VOD_VIDEO_BACKTOLIST' ,'Back to list');
